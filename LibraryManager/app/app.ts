@@ -1,5 +1,5 @@
 import { Category } from "./../models/enums";
-import { Author, Book, Librarian, Logger, Magazine } from "./../models/interfaces";
+import { Author, Book, KeyValuePair, Librarian, Logger, Magazine } from "./../models/interfaces";
 
 import * as util from "./../lib/utilityFunctions";
 import { ReferenceItem } from "./../models/classes/ReferenceItem";
@@ -41,7 +41,7 @@ function logFavoriteBooks([...books]: Array<Book>): void {
 
 // logFavoriteBooks(util.GetAllBooks());
 
-// const [book1, book2] = util.GetAllBooks();
+const [book1, book2] = util.GetAllBooks();
 // const { title: booktitle, author: bookauthor } = book1;
 // console.log(booktitle);
 // console.log(bookauthor);
@@ -61,4 +61,10 @@ booksRead.push(...schoolBooks);
 const poets: Array<string> = ["Shelley", "Collins", "Hughes"];
 const authors: Array<string> = ["Tolstoy", "Fitzgerald", ...poets];
 
-console.log(authors);
+// Tuple Types
+// let catalogLocation: [string, Book] = ["A 123.456", book1];
+// catalogLocation[2] = "B 147.258"; // [ts] Index '2' is out-of-bounds in tuple of length 2.
+// catalogLocation[2] = true; // [ts] Type 'true' is not assignable to type 'string | Book'.
+
+const catalogLocation: KeyValuePair<string, Book> = ["A 123.456", book1];
+catalogLocation[2] = "B 147.258"; // OK

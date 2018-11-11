@@ -1,5 +1,5 @@
 import { Category } from "./enums";
-export { Book, DamageLogger as Logger, Author, Librarian, Magazine, ShelfItem };
+export { Book, DamageLogger as Logger, Author, Librarian, Magazine, ShelfItem, KeyValuePair };
 
 interface Book {
 	id: number;
@@ -34,4 +34,9 @@ interface Magazine {
 
 interface ShelfItem {
 	title: string;
+}
+
+interface KeyValuePair<K, V> extends Array<K | V> {
+	0: K;
+	1: V;
 }
