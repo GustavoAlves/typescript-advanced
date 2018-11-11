@@ -16,4 +16,8 @@ export class UniversityLibrarian implements Interfaces.Librarian, Employee, Rese
 	public assistCustomer(custName: string) {
 		console.info(this.name + " is assisting " + custName);
 	}
+
+	public assistFaculty(): void {
+		console.log("Assisting faculty.");
+	}
 }
