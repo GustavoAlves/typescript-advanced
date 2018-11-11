@@ -68,3 +68,36 @@ const authors: Array<string> = ["Tolstoy", "Fitzgerald", ...poets];
 
 const catalogLocation: KeyValuePair<string, Book> = ["A 123.456", book1];
 catalogLocation[2] = "B 147.258"; // OK
+
+// Union Types
+// function printIdentifier(id: string | number): void { }
+
+const allBooks: Array<Book> = util.GetAllBooks();
+const allMagazines: Array<Magazine> = util.GetAllMagazines();
+
+function printTitle(item: Book | Magazine): void {
+	console.log(item.title);
+}
+
+let readingMaterial: Book | Magazine;
+
+readingMaterial = allBooks[0];
+printTitle(readingMaterial);
+
+readingMaterial = allMagazines[0];
+printTitle(readingMaterial);
+
+// Intersection Types
+// function createCoolNewDevice(id: Phone & Tablet): void { console.log('Phablet is born'); }
+
+let serialNovel: Book & Magazine;
+// serialNovel = allBooks[0]; // Error: Property 'publisher' is missing in type 'Book'
+// serialNovel = allMagazines[0]; // Error: Property 'id' is missing in type 'Magazine'.
+serialNovel = {
+	author: "Occasional Pen",
+	available: true,
+	category: Category.Fiction,
+	id: 100,
+	publisher: "Serial Press",
+	title: "The Gradual Tale"
+};
