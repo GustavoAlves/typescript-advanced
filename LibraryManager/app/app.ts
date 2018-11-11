@@ -77,11 +77,11 @@ catalogLocation[2] = "B 147.258"; // OK
 const allBooks: Array<Book> = util.GetAllBooks();
 const allMagazines: Array<Magazine> = util.GetAllMagazines();
 
-function printTitle(item: Book | Magazine): void {
+function printTitle(item: PrintMaterial): void {
 	console.log(item.title);
 }
 
-let readingMaterial: Book | Magazine;
+let readingMaterial: PrintMaterial;
 
 readingMaterial = allBooks[0];
 printTitle(readingMaterial);
@@ -92,7 +92,7 @@ printTitle(readingMaterial);
 // Intersection Types
 // function createCoolNewDevice(id: Phone & Tablet): void { console.log('Phablet is born'); }
 
-let serialNovel: Book & Magazine;
+let serialNovel: Serial;
 // serialNovel = allBooks[0]; // Error: Property 'publisher' is missing in type 'Book'
 // serialNovel = allMagazines[0]; // Error: Property 'id' is missing in type 'Magazine'.
 serialNovel = {
@@ -108,3 +108,12 @@ serialNovel = {
 util.applyMixins(UniversityLibrarian, [Employee, Researcher]);
 const newLibrarian = new UniversityLibrarian();
 newLibrarian.doResearch("Computer Science");
+
+// String literal type and Type Aliases
+type Frequency = "daily" | "monthly" | "annually";
+type PrintMaterial = Book | Magazine;
+type Serial = Book & Magazine;
+
+function getMagazineByFrequency(preferredFrequency: Frequency): void {
+	// do something here
+}
