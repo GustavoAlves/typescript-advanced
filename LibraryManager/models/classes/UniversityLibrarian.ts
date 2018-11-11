@@ -2,7 +2,13 @@ import * as Interfaces from "../interfaces";
 import Employee from "./Employee";
 import Researcher from "./Researcher";
 
+export const CLASS_INFO = Symbol();
+
 export class UniversityLibrarian implements Interfaces.Librarian, Employee, Researcher {
+	public static [Symbol.hasInstance](obj: object): boolean {
+		return obj.hasOwnProperty("name") && obj.hasOwnProperty("assistCustomer");
+	}
+
 	public name: string;
 	public email: string;
 	public department: string;
@@ -19,5 +25,9 @@ export class UniversityLibrarian implements Interfaces.Librarian, Employee, Rese
 
 	public assistFaculty(): void {
 		console.log("Assisting faculty.");
+	}
+
+	public [CLASS_INFO](): void {
+		console.log("This class represents a UniversityLibrarian.");
 	}
 }

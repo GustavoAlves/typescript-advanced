@@ -11,10 +11,10 @@ interface Book {
 	markDamaged?: DamageLogger;
 }
 
-interface Book {
-	publisher: string;
-	hasIndex: boolean;
-}
+// interface Book {
+// 	publisher: string;
+// 	hasIndex: boolean;
+// }
 
 type DamageLogger = (reason: string) => void;
 

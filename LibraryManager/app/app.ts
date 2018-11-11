@@ -7,7 +7,7 @@ import * as util from "./../lib/utilityFunctions";
 import "./../models/classes/LibrarianExtension";
 import { PublicLibrarian } from "./../models/classes/PublicLibrarian";
 import { ReferenceItem } from "./../models/classes/ReferenceItem";
-import { UniversityLibrarian } from "./../models/classes/UniversityLibrarian";
+import { CLASS_INFO, UniversityLibrarian } from "./../models/classes/UniversityLibrarian";
 import { Category } from "./../models/enums";
 import { Author, Book, KeyValuePair, Librarian, Logger, Magazine } from "./../models/interfaces";
 
@@ -64,12 +64,38 @@ function isBook(text: Book | Magazine): text is Book {
 	return (text as Book).author !== undefined;
 }
 
-let readingMaterial: Book | Magazine;
-readingMaterial = util.GetAllBooks()[0];
-// readingMaterial = util.GetAllMagazines()[0];
+// let readingMaterial: Book | Magazine;
+// readingMaterial = util.GetAllBooks()[0];
+// // readingMaterial = util.GetAllMagazines()[0];
 
-if (isBook(readingMaterial)) {
-	console.log(`The book's author is ${readingMaterial.author}.`);
+// if (isBook(readingMaterial)) {
+// 	console.log(`The book's author is ${readingMaterial.author}.`);
+// } else {
+// 	console.log(`The magazine's publisher is ${readingMaterial.publisher}.`);
+// }
+
+// Symbols: new primitive datatype
+const mySymbol = Symbol("first_symbol");
+const anotherSymbol = Symbol("first_symbol");
+
+// console.log(mySymbol === anotherSymbol);
+// console.log(typeof mySymbol);
+
+let myObject = {
+	[mySymbol]: "value for my symbol key"
+};
+
+// console.log(myObject[mySymbol]);
+
+let librarian = new UniversityLibrarian();
+// librarian[CLASS_INFO]();
+
+let librarianCustomer = {
+	name: "Thorne",
+	assistCustomer: (custName: string): void => console.log(`Assisting ${custName}.`)
+};
+if (librarianCustomer instanceof UniversityLibrarian) {
+	console.log("A helpful librarian.");
 } else {
-	console.log(`The magazine's publisher is ${readingMaterial.publisher}.`);
+	console.log("Not a librarian.");
 }
