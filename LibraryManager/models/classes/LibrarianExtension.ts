@@ -7,4 +7,4 @@ declare module "./UniversityLibrarian" {
 	}
 }
 
-UniversityLibrarian.prototype.hostSeminar = (topic: string): void =>  console.log("Hosting a seminar on " + topic);
+// UniversityLibrarian.prototype.hostSeminar = (topic: string): void =>  console.log("Hosting a seminar on " + topic);
