@@ -1,10 +1,8 @@
 import * as Interfaces from "../interfaces";
 import Employee from "./Employee";
 import Researcher from "./Researcher";
-export { UniversityLibrarian };
 
-class UniversityLibrarian implements Interfaces.Librarian, Employee, Researcher {
-
+export class UniversityLibrarian implements Interfaces.Librarian, Employee, Researcher {
 	public name: string;
 	public email: string;
 	public department: string;
@@ -18,5 +16,4 @@ class UniversityLibrarian implements Interfaces.Librarian, Employee, Researcher 
 	public assistCustomer(custName: string) {
 		console.info(this.name + " is assisting " + custName);
 	}
-
 }

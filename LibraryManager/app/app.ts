@@ -4,6 +4,7 @@ import Employee from "../models/classes/Employee";
 import LibraryBook from "../models/classes/LibraryBook";
 import Researcher from "../models/classes/Researcher";
 import * as util from "./../lib/utilityFunctions";
+import "./../models/classes/LibrarianExtension";
 import { ReferenceItem } from "./../models/classes/ReferenceItem";
 import { UniversityLibrarian } from "./../models/classes/UniversityLibrarian";
 import { Category } from "./../models/enums";
@@ -22,3 +23,13 @@ const ebook = new EletronicBook();
 ebook.checkin()
 	.removeFromCustomerDevice()
 	.checkout();
+
+// Declaration Merging
+// Interface merging
+let mergedBook: Book;
+mergedBook.publisher = "Programming Press";
+mergedBook.hasIndex = true;
+
+// Module augmentation
+let newLibrarian = new UniversityLibrarian();
+newLibrarian.hostSeminar("British Literature");
