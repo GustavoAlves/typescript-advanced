@@ -47,13 +47,29 @@ function logVisitor(param: number | string) {
 // logVisitor("Leigh Ann");
 // logVisitor(4);
 
-let lib: Librarian;
-// lib = new UniversityLibrarian();
-lib = new PublicLibrarian();
+// let lib: Librarian;
+// // lib = new UniversityLibrarian();
+// lib = new PublicLibrarian();
 
-if (lib instanceof UniversityLibrarian) {
-	lib.assistFaculty();
+// if (lib instanceof UniversityLibrarian) {
+// 	lib.assistFaculty();
+// }
+// if (lib instanceof PublicLibrarian) {
+// 	lib.teachCommunity();
+// }
+
+// Custom Type Guards
+function isBook(text: Book | Magazine): text is Book {
+	// text as Book : <Book> text
+	return (text as Book).author !== undefined;
 }
-if (lib instanceof PublicLibrarian) {
-	lib.teachCommunity();
+
+let readingMaterial: Book | Magazine;
+readingMaterial = util.GetAllBooks()[0];
+// readingMaterial = util.GetAllMagazines()[0];
+
+if (isBook(readingMaterial)) {
+	console.log(`The book's author is ${readingMaterial.author}.`);
+} else {
+	console.log(`The magazine's publisher is ${readingMaterial.publisher}.`);
 }
