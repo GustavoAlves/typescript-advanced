@@ -133,3 +133,12 @@ export function GetTitles(bookProperty: string | boolean): Array<string> {
 export function PrintBook(book: Book): void {
 	console.log(book.title + " by " + book.author);
 }
+
+// Mixin
+export function applyMixins(derivedCtor: any, baseCtors: Array<any>) {
+	baseCtors.forEach(baseCtor => {
+		Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
+			derivedCtor.prototype[name] = baseCtor.prototype[name];
+		});
+	});
+}

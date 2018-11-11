@@ -1,8 +1,10 @@
-import { Category } from "./../models/enums";
-import { Author, Book, KeyValuePair, Librarian, Logger, Magazine } from "./../models/interfaces";
-
+import Employee from "../models/classes/Employee";
+import Researcher from "../models/classes/Researcher";
 import * as util from "./../lib/utilityFunctions";
 import { ReferenceItem } from "./../models/classes/ReferenceItem";
+import { UniversityLibrarian } from "./../models/classes/UniversityLibrarian";
+import { Category } from "./../models/enums";
+import { Author, Book, KeyValuePair, Librarian, Logger, Magazine } from "./../models/interfaces";
 
 // console.log("Hello Advanced TypeScript course on Pluralsight");
 
@@ -101,3 +103,8 @@ serialNovel = {
 	publisher: "Serial Press",
 	title: "The Gradual Tale"
 };
+
+// Mixin
+util.applyMixins(UniversityLibrarian, [Employee, Researcher]);
+const newLibrarian = new UniversityLibrarian();
+newLibrarian.doResearch("Computer Science");
