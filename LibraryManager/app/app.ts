@@ -41,9 +41,24 @@ function logFavoriteBooks([...books]: Array<Book>): void {
 
 // logFavoriteBooks(util.GetAllBooks());
 
-const [book1, book2] = util.GetAllBooks();
-const { title: booktitle, author: bookauthor } = book1;
-console.log(booktitle);
-console.log(bookauthor);
+// const [book1, book2] = util.GetAllBooks();
+// const { title: booktitle, author: bookauthor } = book1;
+// console.log(booktitle);
+// console.log(bookauthor);
 
 // printBookInfo(book1);
+
+// The Spread Operator
+const schoolBooks: Array<Book> = [
+	{ id: 10, title: "The Great Gatsby", author: "F. Scott Fitzgerald", available: true, category: Category.Fiction },
+	{ id: 11, title: "Crime and Punishment", author: "Fyodor Dostoevsky", available: true, category: Category.Fiction },
+	{ id: 12, title: "Clear Light of Day", author: "Anita Desai", available: true, category: Category.Fiction }
+];
+
+const booksRead: Array<Book> = util.GetAllBooks();
+booksRead.push(...schoolBooks);
+
+const poets: Array<string> = ["Shelley", "Collins", "Hughes"];
+const authors: Array<string> = ["Tolstoy", "Fitzgerald", ...poets];
+
+console.log(authors);
