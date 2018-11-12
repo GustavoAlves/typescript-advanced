@@ -17,3 +17,10 @@ export function logger<TFunction extends Function>(target: TFunction): TFunction
 
 	return newConstructor as TFunction;
 }
+
+export function writable(isWritable: boolean) {
+	return (target: Object, propertyKey: string, descriptor: PropertyDescriptor): void => {
+		console.log(`Setting ${propertyKey}.`);
+		descriptor.writable = isWritable;
+	};
+}

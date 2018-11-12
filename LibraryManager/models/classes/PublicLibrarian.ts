@@ -1,7 +1,7 @@
-import { logger } from "../decorators";
+import { logger, writable } from "../decorators";
 import * as Interfaces from "../interfaces";
 
-@logger
+// @logger
 export class PublicLibrarian implements Interfaces.Librarian {
 	public name: string;
 	public email: string;
@@ -11,6 +11,7 @@ export class PublicLibrarian implements Interfaces.Librarian {
 		console.info("Assisting customer.");
 	}
 
+	@writable(false)
 	public teachCommunity(): void {
 		console.log("Teaching community.");
 	}

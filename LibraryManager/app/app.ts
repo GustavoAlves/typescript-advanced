@@ -39,3 +39,14 @@ import { Author, Book, KeyValuePair, Librarian, Logger, Magazine } from "./../mo
 
 let lib1 = new UniversityLibrarian();
 let lib2 = new PublicLibrarian();
+
+// Property and Parameter Decorators
+try {
+	lib1.assistFaculty = () => console.log("assistFaculty replacement method");
+	lib2.teachCommunity = () => console.log("teachCommunity replacement method");
+} catch (err) {
+	console.log(err.message);
+}
+
+lib1.assistFaculty();
+lib2.teachCommunity();
