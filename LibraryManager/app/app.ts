@@ -46,21 +46,21 @@ import { Author, Book, KeyValuePair, Librarian, Logger, Magazine } from "./../mo
 // console.log("Search submitted...");
 
 // Promise
-function getBooksByCategory(cat: Category): Promise<Array<string>> {
-	let p: Promise<Array<string>> = new Promise((resolve, reject) => {
-		setTimeout(() => {
-			const foundBooks: Array<string> = util.GetBookTitlesByCategory(cat);
+// function getBooksByCategory(cat: Category): Promise<Array<string>> {
+// 	let p: Promise<Array<string>> = new Promise((resolve, reject) => {
+// 		setTimeout(() => {
+// 			const foundBooks: Array<string> = util.GetBookTitlesByCategory(cat);
 
-			if (foundBooks.length > 0) {
-				resolve(foundBooks);
-			} else {
-				reject("No books found for that category.");
-			}
-		}, 2000);
-	});
+// 			if (foundBooks.length > 0) {
+// 				resolve(foundBooks);
+// 			} else {
+// 				reject("No books found for that category.");
+// 			}
+// 		}, 2000);
+// 	});
 
-	return p;
-}
+// 	return p;
+// }
 
 // console.log("Beginnig search...");
 // getBooksByCategory(Category.Fiction)
@@ -82,13 +82,40 @@ function getBooksByCategory(cat: Category): Promise<Array<string>> {
 // 	.catch(reason => console.log(`Error: ${reason}`));
 // console.log("Search submitted...");
 
+// console.log("Beginnig search...");
+// getBooksByCategory(Category.Fiction)
+// 	.then(titles => {
+// 		console.log(`Found titles: ${titles}`);
+// 		throw "Something bad happened";
+// 		return titles.length;
+// 	}, reason => 0 ) // reason => { return 0; }
+// 	.then(numOfBooks => console.log(`Number of books found: ${numOfBooks}`))
+// 	.catch(reason => console.log(`Error: ${reason}`));
+// console.log("Search submitted...");
+
+// Async/await
+function getBooksByCategory(cat: Category): Promise<Array<string>> {
+	const p: Promise<Array<string>> = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			const foundBooks: Array<string> = util.GetBookTitlesByCategory(cat);
+
+			if (foundBooks.length > 0) {
+				resolve(foundBooks);
+			} else {
+				reject("No books found for that category.");
+			}
+		}, 2000);
+	});
+
+	return p;
+}
+
+async function logSearchResults(bookCategory: Category) {
+	const foundBooks = await getBooksByCategory(bookCategory);
+	console.log(foundBooks);
+}
+
 console.log("Beginnig search...");
-getBooksByCategory(Category.Fiction)
-	.then(titles => {
-		console.log(`Found titles: ${titles}`);
-		throw "Something bad happened";
-		return titles.length;
-	}, reason => 0 ) // reason => { return 0; }
-	.then(numOfBooks => console.log(`Number of books found: ${numOfBooks}`))
-	.catch(reason => console.log(`Error: ${reason}`));
+logSearchResults(Category.Biography)
+	.catch(reason => console.log(reason));
 console.log("Search submitted...");
