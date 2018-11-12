@@ -12,41 +12,35 @@ import { Category } from "./../models/enums";
 import { Author, Book, KeyValuePair, Librarian, Logger, Magazine } from "./../models/interfaces";
 
 /**
- * Creating and Using Decorators
+ * Implementing Asynchronous Patterns
  */
-// // Class decorator
-// function uielement(target: Function) { /* do ui stuff here */ }
-// // Method decorator
-// function deprecated(t: any, p: string, d: PropertyDescriptor) {
-// 	console.log("This method will go away soon.");
-// }
+// Callback Functions
+type LibMgrCallback = (err: Error, titles: Array<string>) => void;
 
-// @uielement
-// class ContactForm {
-// 	@deprecated
-// 	public someOldMethod(): void { console.log("Old method call."); }
-// }
+function getBooksByCategory(cat: Category, callback: LibMgrCallback): void {
+	setTimeout(() => {
+		try {
+			const foundBooks: Array<string> = util.GetBookTitlesByCategory(cat);
 
-// Decorator factory
-// function uielement(element: string) {
-// 	return (target: Function): void => console.log(`Creating new element ${element}.`);
-// }
-
-// @uielement("SimpleContactForm")
-// class ContactForm {
-// 	// contact properties
-// }
-
-let lib1 = new UniversityLibrarian();
-let lib2 = new PublicLibrarian();
-
-// Property and Parameter Decorators
-try {
-	lib1.assistFaculty = () => console.log("assistFaculty replacement method");
-	lib2.teachCommunity = () => console.log("teachCommunity replacement method");
-} catch (err) {
-	console.log(err.message);
+			if (foundBooks.length > 0) {
+				callback(null, foundBooks);
+			} else {
+				throw new Error("No books found.");
+			}
+		} catch (err) {
+			callback(err, null);
+		}
+	}, 2000);
 }
 
-lib1.assistFaculty();
-lib2.teachCommunity();
+function logCategorySearch(err: Error, titles: Array<string>): void {
+	if (err) {
+		console.log(`Error message: ${err.message}`);
+	} else {
+		console.log(`Found the following titles: ${titles}`);
+	}
+}
+
+console.log("Beginnig search...");
+getBooksByCategory(Category.Biography, logCategorySearch);
+console.log("Search submitted...");
